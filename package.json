@@ -4,6 +4,7 @@
   "description": "A Node Based Webhook that fetches the details of a movie",
   "main": "index.js",
   "scripts": {
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
