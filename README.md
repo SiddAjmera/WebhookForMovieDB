@@ -2,5 +2,5 @@
 
 A very simple webhook that gets you the details of a specified movie.
 
-# Deploy to:
+# Deploy
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
