@@ -13,14 +13,14 @@ server.use(bodyParser.json());
 
 server.post('/get-movie-details', function (req, res) {
 
-    let movieToSearch = req.body.result && req.body.result.parameters && req.body.result.parameters.movie ? req.body.result.parameters.movie : 'The Godfather';
-    let reqUrl = encodeURI('http://theapache64.xyz:8080/movie_db/search?keyword=' + movieToSearch);
+    const movieToSearch = req.body.result && req.body.result.parameters && req.body.result.parameters.movie ? req.body.result.parameters.movie : 'The Godfather';
+    const reqUrl = encodeURI(`http://www.omdbapi.com/?t=${movieToSearch}&apikey=YOUR-API-KEY-HERE`);
     http.get(reqUrl, (responseFromAPI) => {
 
         responseFromAPI.on('data', function (chunk) {
-            let movie = JSON.parse(chunk)['data'];
-            let dataToSend = movieToSearch === 'The Godfather' ? 'I don\'t have the required info on that. Here\'s some info on \'The Godfather\' instead.\n' : '';
-            dataToSend += movie.name + ' is a ' + movie.stars + ' starer ' + movie.genre + ' movie, released in ' + movie.year + '. It was directed by ' + movie.director;
+            const movie = JSON.parse(chunk);
+            let dataToSend = movieToSearch === 'The Godfather' ? `I don't have the required info on that. Here's some info on 'The Godfather' instead.\n` : '';
+            dataToSend += `${movie.Title} is a ${movie.Actors} starer ${movie.Genre} movie, released in ${movie.Year}. It was directed by ${movie.Director}`;
 
             return res.json({
                 speech: dataToSend,
