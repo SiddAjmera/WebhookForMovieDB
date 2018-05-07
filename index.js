@@ -14,7 +14,7 @@ server.use(bodyParser.json());
 
 server.post('/get-movie-details', (req, res) => {
 
-    const movieToSearch = req.body.result && req.body.result.parameters && req.body.result.parameters.movie ? req.body.result.parameters.movie : 'The Godfather';
+    const movieToSearch = req.body.queryResult && req.body.queryResult.parameters && req.body.queryResult.parameters.movie ? req.body.queryResult.parameters.movie : 'The Godfather';
     const reqUrl = encodeURI(`http://www.omdbapi.com/?t=${movieToSearch}&apikey=${API_KEY}`);
     http.get(reqUrl, (responseFromAPI) => {
         let completeResponse = '';
